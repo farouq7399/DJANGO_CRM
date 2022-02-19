@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page| welcome!</title>
+    <style>
+        body{
+            font-family:arial; color:#25D366;background-color:#2b78A2
+        }
+        a{
+            font-weight:bold;text-decoration:none; color:#25D366;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Welcome To our home Page !</h1>
+    <b>Here are all our leads</b>
+    {{leads}}
+    <ul>
+        {% for lead in leads %}
+        <h1>{{ lead.last_name }}   {{ lead.first_name }}</h1>
+        <a href="{% url 'lead_details' lead.pk %}">click here!! {{lead.pk}}</a>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home_page'  %}">Home Page!! </a><br>
+    <a href="{% url 'create_lead'  %}">create lead!!</a>
+</body>
+</html>
