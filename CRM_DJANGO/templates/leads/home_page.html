@@ -1,33 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-{% load static %}
-<head>
-    <meta charset="UTF-8">
-    <title>Home Page| welcome!</title>
-    <style>
-        body{
-            font-family:arial; color:#25D366;background-color:#2b78A2
-        }
-        a{
-            font-weight:bold;text-decoration:none; color:#25D366;
-        }
+{% extends "skeleton.html" %}
 
-    </style>
-</head>
-<body>
-    <h1>Welcome To our home Page !</h1>
-    <b>Here are all our leads</b>
-    {{leads}}
-    <ul>
-        {% for lead in leads %}
-        <h1>{{ lead.last_name }}   {{ lead.first_name }}</h1><hr>
-        <a href="{% url 'lead_details' lead.pk %}">click here for details!! {{lead.pk}}</a><br><hr>
-        <a href="{% url 'update_lead' lead.pk %}">click here for update!! {{lead.pk}}</a><hr>
-        <a href="{% url 'delete_lead'  lead.pk %}" style="color:red">delete lead!! </a><hr>
 
-        {% endfor %}
-    </ul>
-    <a href="{% url 'home_page'  %}">Home Page!! </a><br>
-    <a href="{% url 'create_lead'  %}">create lead!!</a>
-</body>
-</html>
+{% block content %}
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-20">
+      <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">CRM Django</h2>
+      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">This is all our leads, ENJOY !!</h1>
+    </div>
+    <div class="flex flex-wrap -m-4">
+      {% for lead in leads %}
+      <div class="p-4 md:w-1/3">
+        <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
+          <div class="flex items-center mb-3">
+            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <h2 class="text-gray-900 text-lg title-font font-medium">name : {{ lead.first_name }}</h2>
+          </div>
+          <div class="flex-grow">
+            <p class="leading-relaxed text-base">testing</p>
+            <a href="{% url 'lead_details' lead.pk %}" class="mt-3 text-indigo-500 inline-flex items-center">click here for details
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+</section>
+{% endblock %}
