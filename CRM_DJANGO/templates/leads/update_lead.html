@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Update Lead !</title>
-<style>
-        body{
-            font-family:arial; color:#25D366;background-color:#2b78A2
-        }
-        a{
-            font-weight:bold;text-decoration:none; color:#25D366;
-        }
-        form{
-            background-color: black;width:20%;margin:120px;padding:20px;border-radius:30px;margin-left:220px
-        }
-        button{
-        background-color:white;font:bold;border: 2px solid #4CAF50;border-radius:10%
-
-    </style>
-</head>
-<body>
+{% extends "skeleton.html" %}
+{%  block content%}
+<a href="{% url 'home_page'  %}">Home Page ||</a>
+    <a href="{% url 'create_lead'  %}">create lead </a>
 <h1>create a new lead !</h1>
 <form method="POST">
     {% csrf_token %}
@@ -28,7 +11,5 @@
 </form>
 
 
-    <a href="{% url 'home_page'  %}">Home Page!! {{lead.pk}}</a><br>
-    <a href="{% url 'create_lead'  %}">create lead!! </a></body>
-</body>
-</html>
+
+{%  endblock %}
