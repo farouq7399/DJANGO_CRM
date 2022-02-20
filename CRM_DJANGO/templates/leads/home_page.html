@@ -20,8 +20,11 @@
     {{leads}}
     <ul>
         {% for lead in leads %}
-        <h1>{{ lead.last_name }}   {{ lead.first_name }}</h1>
-        <a href="{% url 'lead_details' lead.pk %}">click here!! {{lead.pk}}</a>
+        <h1>{{ lead.last_name }}   {{ lead.first_name }}</h1><hr>
+        <a href="{% url 'lead_details' lead.pk %}">click here for details!! {{lead.pk}}</a><br><hr>
+        <a href="{% url 'update_lead' lead.pk %}">click here for update!! {{lead.pk}}</a><hr>
+        <a href="{% url 'delete_lead'  lead.pk %}" style="color:red">delete lead!! </a><hr>
+
         {% endfor %}
     </ul>
     <a href="{% url 'home_page'  %}">Home Page!! </a><br>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Lead !</title>
+    <title>Update Lead !</title>
 <style>
         body{
             font-family:arial; color:#25D366;background-color:#2b78A2
@@ -22,10 +22,12 @@
 <h1>create a new lead !</h1>
 <form method="POST">
     {% csrf_token %}
-    <h1>Header</h1>
+    <h1>update a lead : {{lead.first_name}}</h1>
     {{form.as_p }}
     <button type="submit">submit</button>
 </form>
+
+
     <a href="{% url 'home_page'  %}">Home Page!! {{lead.pk}}</a><br>
     <a href="{% url 'create_lead'  %}">create lead!! </a></body>
 </body>

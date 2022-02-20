@@ -21,5 +21,7 @@
     {{lead_details.Agent}}<br>
     <a href="{% url 'home_page'  %}">Home Page!! {{lead.pk}}</a><br>
     <a href="{% url 'create_lead'  %}">create lead!! </a>
+    <a href="{% url 'update_lead'  lead_details.pk %}">== update ==</a><hr>
+    <a href="{% url 'delete_lead'  lead_details.pk %}" style="color:red">== delete lead == </a>
 </body>
 </html>
