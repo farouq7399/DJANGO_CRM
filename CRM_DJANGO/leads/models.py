@@ -13,7 +13,7 @@ class Lead(models.Model):
     Agent = models.ForeignKey("Agent", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'fn in model :{self.first_name} '
+        return self.first_name
 
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

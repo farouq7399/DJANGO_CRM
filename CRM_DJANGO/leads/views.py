@@ -1,8 +1,30 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .models import User, Agent, Lead
-from .forms import LeadForm, LeadModelForm
+from django.shortcuts import render, redirect, reverse
+from .models import Lead
+from .forms import LeadModelForm
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 
+#Class Based views CRUD+L using django.view.generic
+class LandingPageView(TemplateView):
+    template_name = 'landing.html'
+
+class LeadListView(ListView):
+    template_name = 'home_page.html'
+    queryset = Lead.objects.all()
+    context_object_name = 'leads'
+
+class LeadDetailsView(DetailView):
+    template_name = 'details_lead.html'
+    queryset = Lead.objects.all()
+    context_object_name = 'lead_details'
+
+class LeadCreateView(CreateView):
+    template_name = 'details_lead.html'
+    form_class = LeadModelForm
+
+    def get_success_url(self):
+        reverse("home_page")
+
+# Function Based Views
 def landing_page(request):
     return render(request, 'landing.html')
 
