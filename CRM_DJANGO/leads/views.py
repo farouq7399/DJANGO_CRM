@@ -18,8 +18,9 @@ class LeadDetailsView(DetailView):
     context_object_name = 'lead_details'
 
 class LeadCreateView(CreateView):
-    template_name = 'details_lead.html'
+    template_name = 'create_lead.html'
     form_class = LeadModelForm
+    context_object_name = "leads"
 
     def get_success_url(self):
         reverse("home_page")
