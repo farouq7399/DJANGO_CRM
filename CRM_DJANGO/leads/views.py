@@ -98,3 +98,7 @@ def lead_delete(request, pk):
     lead = Lead.objects.get(pk=pk)
     lead.delete()
     return redirect("/leads")
+
+
+
+###this is my update
