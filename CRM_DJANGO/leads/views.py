@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from .models import Lead
 from .forms import LeadModelForm
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 
 #Class Based views CRUD+L using django.view.generic
 class LandingPageView(TemplateView):
@@ -23,7 +23,23 @@ class LeadCreateView(CreateView):
     context_object_name = "leads"
 
     def get_success_url(self):
-        reverse("home_page")
+        return reverse("home_page")
+
+class LeadUpdateView(UpdateView):
+    template_name = 'update_lead.html'
+    queryset = Lead.objects.all()
+    form_class = LeadModelForm
+    context_object_name = 'lead'
+
+    def get_success_url(self):
+        return reverse('home_page')
+
+class LeadDeleteView(DeleteView):
+    template_name = 'delete_lead.html'
+    queryset = Lead.objects.all()
+
+    def get_success_url(self):
+        return redirect("home_page")
 
 # Function Based Views
 def landing_page(request):
