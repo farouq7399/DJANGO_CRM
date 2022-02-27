@@ -1,7 +1,19 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect, reverse
 from .models import Lead
 from .forms import LeadModelForm
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views import generic
+from django.contrib.auth.forms import UserCreationForm
+
+# sign up class
+class SignupView(generic.CreateView):
+    template_name = 'registration/signup.html'
+    form_class = UserCreationForm
+
+    def get_success_url(self):
+        return reverse('login')
+
 
 #Class Based views CRUD+L using django.view.generic
 class LandingPageView(TemplateView):
@@ -25,6 +37,16 @@ class LeadCreateView(CreateView):
     def get_success_url(self):
         return reverse("home_page")
 
+    def form_valid(self, form):
+        # TODO SEND EMAIL
+        send_mail(
+            subject="A lead has been created",
+            message="Go to the site to find the new lead!",
+            from_email="test@test.com",
+            recipient_list=["test2@test.com"]
+        )
+        return super(LeadCreateView, self).form_valid(form)
+
 class LeadUpdateView(UpdateView):
     template_name = 'update_lead.html'
     queryset = Lead.objects.all()
@@ -40,6 +62,7 @@ class LeadDeleteView(DeleteView):
 
     def get_success_url(self):
         return redirect("home_page")
+
 
 # Function Based Views
 def landing_page(request):
@@ -101,4 +124,3 @@ def lead_delete(request, pk):
 
 
 
-###this is my update
