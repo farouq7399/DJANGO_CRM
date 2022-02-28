@@ -1,0 +1,10 @@
+{%extends 'skeleton.html' %}
+{% block content  %}
+<form method="POST">
+    {% csrf_token %}
+    <h1>Header</h1>
+    {{form.as_p }}
+    <button type="submit" class="text-2xl text-blue-500">submit</button>
+</form>
+    <a href="{% url 'home_page'  %}">List leads</a><br>
+{% endblock %}

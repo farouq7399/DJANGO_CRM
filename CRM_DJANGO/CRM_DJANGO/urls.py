@@ -9,6 +9,7 @@ urlpatterns = [
     #path('', landing_page),
     path('', LandingPageView.as_view(), name="landing-page"),
     path('', include('leads.urls')),
+    path('', include('agents.urls')),
 ]
 
 
